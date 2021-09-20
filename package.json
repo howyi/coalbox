@@ -1,7 +1,24 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "dev": "lerna run dev --parallel --stream",
+    "build": "lerna run build --parallel --stream && lerna run build-desktop --parallel --stream"
+  },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "@types/codemirror": "^5.60.2",
+    "@types/react-dom": "^17.0.9",
+    "@types/throttle-debounce": "^2.1.0",
+    "concurrently": "^6.2.1",
+    "electron": "^14.0.1",
+    "lerna": "^4.0.0",
+    "react-app-rewired": "^2.1.8",
+    "typescript": "^4.4.3",
+    "wait-on": "^6.0.0"
+  },
+  "dependencies": {
+    "@coalbox/core": "file:packages/core",
+    "@coalbox/desktop": "file:packages/desktop",
+    "@coalbox/proto-mapper": "file:packages/proto-mapper"
   }
 }

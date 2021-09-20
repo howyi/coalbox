@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+/**
+ * Coalbox Check
+ */
+package sample;
+
+option go_package = "github.com/howyi/coalbox";
+
+import "github.com/envoyproxy/protoc-gen-validate/validate/validate.proto";
+import "google/api/annotations.proto";
+
+/** Sample service comment
+ */
+service ProtoMapperService {
+    rpc Search(SearchRequest) returns (SearchResponse) {
+        option (google.api.http) = {
+            post: "/v1/search",
+            body: "*"
+        };
+    }
+}
+
+
+/* Sample message comment
+ */
+message SearchRequest {
+    string query = 1 [(validate.rules).string = {min_len: 1, max_len: 50}]; // Search Text
+    int32 page_number = 2;  // page number
+}
+
+message SearchResponse {
+    repeated string ids = 1;
+}

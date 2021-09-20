@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+/**
+ * Coalbox Check
+ */
+package check1;
+
+option go_package = "github.com/howyi/check1";
+option java_package = "com.howyi.check1.gen";
+
+import "github.com/envoyproxy/protoc-gen-validate/validate/validate.proto";
+import "google/protobuf/any.proto";
+import "check2/check3.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service HelloService {
+    rpc Search(SearchRequest) returns (SearchResponse) {}
+    rpc EmptySearch(google.protobuf.Empty) returns (SearchRequest) {}
+    rpc ClientStreamSearch(stream SearchRequest) returns (check1.check3.SearchResponse3) {}
+    rpc ServerStreamSearch(check1.check3.SearchRequest3) returns (stream SearchResponse) {}
+    rpc BidirectionalStreamSearch(stream SearchRequest) returns (stream SearchResponse) {}
+}
+
+service Hello2Service {
+    rpc Search(SearchRequest) returns (SearchResponse) {
+        option (google.api.http) = {
+            post: "/v1/example/echo",
+            body: "*"
+        };
+    }
+}
+
+message ErrorStatus {
+    string message = 1;
+    repeated google.protobuf.Any details = 2;
+}
+
+message ReserveCheck {
+    reserved 2, 15, 9 to 11;
+    reserved "foo", "bar";
+}
+
+/* SearchRequest represents a search query, with pagination options to
+ * indicate which results to include in the response. */
+message SearchRequest {
+    string query = 1 [(validate.rules).string = {min_len: 1, max_len: 50}]; // 検索文字列
+    int32 page_number = 2;  // Which page number do we want?
+    int32 result_per_page = 3;  // Number of results to return per page.
+    enum Corpus {
+        UNIVERSAL = 0;
+        WEB = 1;
+        IMAGES = 2;
+        LOCAL = 3;
+        NEWS = 4;
+        PRODUCTS = 5;
+        VIDEO = 6;
+    }
+    Corpus corpus = 4;
+}
+
+message MultiTypes {
+    string query = 1 [(validate.rules).string = {min_len: 1, max_len: 50}]; // 検索文字列
+    int32 page_number = 2;  // Which page number do we want?
+    int32 result_per_page = 3;  // Number of results to return per page.
+    int32 resultPerPage2 = 6;  // Number of results to return per page.
+    map<string, MyMessage1> projects = 4;
+    map<string, string> textMap = 5;
+}
+
+//message Baz {
+//    extend Foo {
+//        repeated check1.check3.SearchResponse3.Result results = 111;
+//    }
+//}
+message Foo {
+    string results = 1;
+}
+
+/* enumroot */
+enum EnumRoot {
+    UNKNOWN = 0;
+    STARTED = 1;
+    // RUNNING = 1;  // Uncommenting this line will cause a compile error inside Google and a warning message outside.
+}
+
+// 2222
+message MyMessage1 {
+    /* EnumAllowingAlias2 */
+    enum EnumAllowingAlias {
+        option allow_alias = true;
+        UNKNOWN = 0;
+        STARTED = 1;
+        RUNNING = 1;
+    }
+}
+message MyMessage2 {
+    enum EnumNotAllowingAlias {
+        UNKNOWN = 0;
+        STARTED = 1; //qqqq
+        // RUNNING = 1;  // Uncommenting this line will cause a compile error inside Google and a warning message outside.
+    }
+}
+
+message SearchResponse {
+    repeated check1.check3.SearchResponse3.Result results = 1;
+}
+
+message SomeOtherMessage {
+    check1.check3.SearchResponse3.Result result = 1;
+}
+
+message SuperNest {                  // Level 0
+    message MiddleAA {  // Level 1
+        message Inner {   // Level 2
+            int64 ival = 1;
+            bool  booly = 2;
+        }
+    }
+    message MiddleBB {  // Level 1
+        message Inner {   // Level 2
+            int32 ival = 1;
+            bool  booly = 2;
+        }
+    }
+    MiddleAA aa = 1;
+    MiddleAA.Inner ii = 2;
+}
+
+message ResolveSubMessage {
+    string subname = 1;
+    SuperNest.MiddleAA.Inner ii = 2;
+    check1.check3.SearchResponse3.Result result = 3;
+}
+
+message SampleMessage {
+    string subname = 1;
+    oneof test_oneof {
+        string name = 2;
+        ResolveSubMessage sub_message = 3;
+    }
+    oneof test_oneof2 {
+        string name2 = 4;
+        ResolveSubMessage sub_message2 = 5;
+    }
+}

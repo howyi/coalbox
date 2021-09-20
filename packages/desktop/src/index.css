@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,body,#root {
+  /* Coalboxが縦幅を100%にしないと正しくstyleが当たらないため */
+  height: 100%;
+  width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.changed-highlighting {
+  animation: changed-bg 0.6s linear;
+  position: relative;
+}
+
+.board-object-card {
+  animation: changed-bg 0.4s linear;
+  position: relative;
+}
+
+@keyframes changed-bg {
+  0% { background-color: rgba(238, 238, 238, 0.64); }
+  100% { background-color: rgba(255, 255, 255, 0); }
+}
+
+.__json-pretty__ {
+  margin: 0;
+}
+
+/* Chrome、Safari以外 */
+summary {
+  display: block;
+}
+
+/* Chrome、Safari */
+summary::-webkit-details-marker {
+  display: none;
+}

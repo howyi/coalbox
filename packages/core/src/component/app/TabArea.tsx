@@ -92,7 +92,6 @@ export const TabArea: React.VFC<Props> = (props) => {
         currentWorkspace.tabs.forEach((t, i) => {
             newValueMap[i] = t.id
             if (t.id === currentWorkspace.foregroundTabId) {
-                console.log('changed focux2', currentWorkspace)
                 setValue(i)
             }
         })
@@ -100,13 +99,11 @@ export const TabArea: React.VFC<Props> = (props) => {
     }, [currentWorkspace])
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        console.log('changed focux', newValue)
         command.focusTab(currentWorkspace.id, tabIdMap[newValue])
         setValue(newValue);
     };
 
     const handleClose = (event: Parameters<MouseEventHandler>[0], tabId: TabId) => {
-        console.log('close', tabId)
         command.closeTab(currentWorkspace.id, tabId)
         event.stopPropagation()
     };

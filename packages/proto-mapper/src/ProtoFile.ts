@@ -66,8 +66,6 @@ const generateCandidateKey = (currentName: string, findName: string): string[] =
         name += s + '.'
         candidateKeys.push(name + findName)
     })
-    // console.log(currentName, findName)
     candidateKeys.reverse()
-    // console.log(candidateKeys)
     return candidateKeys
 }

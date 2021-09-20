@@ -82,8 +82,6 @@ export const GRPCRequestEditor: React.VFC<Props> = (props) => {
             editor.current = newEditor
         }}
         onBeforeChange={(editor, data, value) => {
-            // props.valueChanged(value);
-            console.log('value changed', value)
             props.valueChanged(value)
         }}
     />

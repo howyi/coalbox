@@ -199,7 +199,6 @@ const reflectParsedProto = (
             }
             break
     }
-    // console.log('coalbox', fullName, doc)
     for (let nestedKey in doc.nested) {
         reflectParsedProto(filePath, doc.nested[nestedKey] as Def, protoFile, namespace)
     }

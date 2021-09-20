@@ -107,7 +107,6 @@ export class ProtoType {
         let isEnum = false
         let enumValues: ProtoEnumValues = {}
         let mapKeyType = ''
-        // console.log('coalbox, from', fullTypeName, def)
         if (def?.options?.mapEntry) {
             isMap = true
             def.field?.forEach((f) => {

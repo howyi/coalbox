@@ -44,7 +44,6 @@ export const GRPCCallArea: React.VFC<Props> = ({controller, instanceConfig, tabC
     const [responseError, setResponseError] = React.useState<string>()
 
     React.useEffect(() => {
-        console.log('ins', instanceConfig.value.body)
         setRawBody(instanceConfig.value.body)
 
         const loadCollection = finder.collectionById(instanceConfig.templatePath.collectionId) as gRPCProtoSetConfig
@@ -62,7 +61,6 @@ export const GRPCCallArea: React.VFC<Props> = ({controller, instanceConfig, tabC
         if (protoSetState[instanceConfig.templatePath.collectionId]) {
             const newProtoFile = protoSetState[instanceConfig.templatePath.collectionId].files[instanceConfig.templatePath.protoFilename]
             setProtoFile(newProtoFile)
-            console.log('wdwa')
             new Promise(async () => {
                 const method = newProtoFile?.services?.[path.serviceName]?.methods?.[path.methodName]
                 if (method && controller.overrideGrpcMetadata) {
@@ -75,7 +73,6 @@ export const GRPCCallArea: React.VFC<Props> = ({controller, instanceConfig, tabC
 
     const debounceSaveBody = debounce(250, (body: string) => {
         if (instanceConfig) {
-            console.log('changed focux5', )
             command.updateInstance({
                 ...instanceConfig,
                 value: {

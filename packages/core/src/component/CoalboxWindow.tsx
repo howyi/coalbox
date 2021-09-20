@@ -31,7 +31,6 @@ const CoalboxRecoiledWindow: React.VFC<Props> = (props) => {
     const [savedConfig, saveConfig] = useLocalStorage<CoalboxConfig>('coalbox_config', props.initConfig)
 
     React.useEffect(() => {
-        console.log('extract', savedConfig)
         setConfig(savedConfig)
     }, [])
 

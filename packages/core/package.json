@@ -7,9 +7,6 @@
   "homepage": "",
   "license": "ISC",
   "main": "dist/index.js",
-  "directories": {
-    "lib": "dist"
-  },
   "files": [
     "dist",
     "styles"

@@ -20,7 +20,6 @@ export const GRPCProtoSetList: React.VFC<Props> = ({config}) => {
 
     const load = async () => {
         const newProtoSet = await ProtoSet.loadFromPaths(config.filePaths, config.importPaths)
-        console.log('loaded', {...protoSet, [config.id]: newProtoSet})
         setProtoSet(newProtoSet)
     }
 

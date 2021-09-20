@@ -57,8 +57,6 @@ export const GRPCProtoSetListTemplate: React.VFC<Props> = (props) => {
     }, [currentWorkspace.collections])
 
     const defaultValue = (): string => {
-        console.log('METHOD', props.method.request.serialize({}))
-        console.log('METHOD2', props.method.request.deserialize(Buffer.from("")))
         const deserialized = props.method.request.deserialize(Buffer.from(""))
         return JSON.stringify(deserialized, null , "\t")
     }

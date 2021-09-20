@@ -1,6 +1,6 @@
 {
   "name": "@coalbox/proto-mapper",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "description": ".proto files mapping to classes",
   "author": "howyi <howyi.lq@gmail.com>",

@@ -2,7 +2,7 @@
   "name": "@coalbox/core",
   "version": "0.0.3",
   "private": false,
-  "description": "> TODO: description",
+  "description": "coalbox core components",
   "author": "howyi <howyi.lq@gmail.com>",
   "homepage": "",
   "license": "ISC",
@@ -11,7 +11,8 @@
     "lib": "dist"
   },
   "files": [
-    "dist"
+    "dist",
+    "styles"
   ],
   "publishConfig": {
     "access": "public"
@@ -20,7 +21,8 @@
     "test": "echo \"Error: run tests from root\" && exit 1",
     "build": "../../node_modules/.bin/tsc",
     "watch": "../../node_modules/.bin/tsc --watch",
-    "dev": "../../node_modules/.bin/tsc --watch"
+    "dev": "../../node_modules/.bin/tsc --watch",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@coalbox/proto-mapper": "^0.0.3",

@@ -1,6 +1,6 @@
 {
   "name": "@coalbox/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "description": "> TODO: description",
   "author": "howyi <howyi.lq@gmail.com>",
@@ -23,7 +23,7 @@
     "dev": "../../node_modules/.bin/tsc --watch"
   },
   "dependencies": {
-    "@coalbox/proto-mapper": "^0.0.1",
+    "@coalbox/proto-mapper": "^0.0.2",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@grpc/grpc-js": "^1.3.7",

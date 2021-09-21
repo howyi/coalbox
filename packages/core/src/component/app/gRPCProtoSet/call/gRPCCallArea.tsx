@@ -1,8 +1,6 @@
-import React, {ChangeEvent} from 'react';
-import {Alert, Box, Grid, InputBase, TextFieldProps} from "@mui/material";
+import React from 'react';
+import {Alert, Box, InputBase, TextFieldProps} from "@mui/material";
 import Typography from '@mui/material/Typography';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import {IconButton} from '@mui/material';
 import {GRPCRequestEditor} from "./GRPCRequestEditor";
 import {useCoalbox} from "../../../../hooks/useCoalbox";
 import {
@@ -19,6 +17,7 @@ import * as grpc from '@grpc/grpc-js'
 import {Metadata} from "@grpc/grpc-js";
 import {defaultTabName} from "../../../../const/default";
 import {CoalboxController} from "../../../CoalboxWindow";
+import {BoxText} from "../../../Highlighter/BoxText";
 
 type Props = {
     instanceConfig: InstanceConfig<GrpcRequestValue, GrpcRequestTemplatePath>
@@ -42,6 +41,7 @@ export const GRPCCallArea: React.VFC<Props> = ({controller, instanceConfig, tabC
     })
     const [responseBody, setResponseBody] = React.useState<string>('')
     const [responseError, setResponseError] = React.useState<string>()
+    const [responseTime, setResponseTime] = React.useState<string>('')
 
     React.useEffect(() => {
         setRawBody(instanceConfig.value.body)
@@ -156,8 +156,9 @@ export const GRPCCallArea: React.VFC<Props> = ({controller, instanceConfig, tabC
         }
 
         const body = JSON.parse(rawBody)
-        console.log('REQUEST', targetEndpoint, request.path, md, body)
-        client.makeUnaryRequest(
+        console.log('REQUEST2', targetEndpoint, request.path, md, body)
+        const startTime = performance.now();
+        const call = client.makeUnaryRequest(
             request.path,
             request.request.serialize,
             request.response.deserialize,
@@ -165,7 +166,10 @@ export const GRPCCallArea: React.VFC<Props> = ({controller, instanceConfig, tabC
             md,
             {},
             (error, response) => {
+                const endTime = performance.now();
+                setResponseTime(`${(endTime -startTime).toFixed(3)}ms`)
                 if (error) {
+                    console.log(error, response)
                     console.error(error)
                     setResponseError(`${error}`)
                     setResponseBody('')
@@ -175,6 +179,9 @@ export const GRPCCallArea: React.VFC<Props> = ({controller, instanceConfig, tabC
                 }
             }
         )
+        call.on('ERROR', (e) => {
+            console.log('err', e)
+        })
     }
 
     return <Box display={'flex'} flexDirection="column" height={'100%'} width={'100%'}>
@@ -255,9 +262,18 @@ export const GRPCCallArea: React.VFC<Props> = ({controller, instanceConfig, tabC
                 <Box flex={'1'} overflow={'scroll'}>
                     <Box display={'flex'} flexDirection="column" height={'100%'} width={'100%'}>
                         <Box flex={'0 0 20px'}>
-                            <Typography color="text.secondary" margin={'5px 10px'}>
-                                Response
-                            </Typography>
+                            <Box display={'flex'} flexDirection="row" width={'100%'}>
+                                <Box flex={'1'}>
+                                    <Typography color="text.secondary" margin={'5px 10px'}>
+                                        Response
+                                    </Typography>
+                                </Box>
+                                <Box flex={'0 0 150px'} sx={{textAlign: 'right'}}>
+                                    <Typography color="text.secondary" margin={'5px 10px'}>
+                                        <BoxText value={responseTime}/>
+                                    </Typography>
+                                </Box>
+                            </Box>
                         </Box>
                         <Box flex={'0 0 0'}>
                             {responseError && <Alert severity="error" variant={"outlined"} style={{margin: '10px', wordBreak: "break-word"}}>

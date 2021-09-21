@@ -2,8 +2,10 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "dev": "lerna run dev --parallel --stream",
-    "build": "lerna run build --parallel --stream && lerna run build-desktop --parallel --stream"
+    "dev:packages": "lerna run dev --parallel --stream",
+    "dev:desktop": "lerna run dev:desktop --parallel --stream",
+    "build:packages": "lerna run build --parallel --stream",
+    "build:desktop": "lerna run build --parallel --stream && lerna run build:desktop --parallel --stream"
   },
   "devDependencies": {
     "@types/codemirror": "^5.60.2",

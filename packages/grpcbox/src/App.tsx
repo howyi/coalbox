@@ -1,6 +1,6 @@
 import React from 'react';
 import '@coalbox/core/styles/editor.css'
-import {CoalboxConfig, CoalboxWindow} from "@coalbox/core";
+import {CoalboxConfig, CoalboxWindow, Endpoint} from "@coalbox/core";
 
 export const App: React.FC = () =>  {
 
@@ -8,7 +8,22 @@ export const App: React.FC = () =>  {
     workspaces: [{
       id: "0",
       name: 'gRPC box',
-      collections: [],
+      collections: [
+        // {
+        //   id: '0',
+        //   name: 'helloworld',
+        //   type: "gRPCProtoSet",
+        //   endpoint: {
+        //     url: "http://localhost:50010",
+        //     serverCertificate: false,
+        //   },
+        //   filePaths: [
+        //       '/Users/howyi/Documents/dev/howyi/coalbox/examples/proto/helloworld.proto'
+        //   ],
+        //   importPaths: [],
+        //   metadata: '',
+        // }
+      ],
       tabs: [],
       instances: []
     }],

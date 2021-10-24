@@ -149,10 +149,14 @@ export const GRPCCallArea: React.VFC<Props> = ({controller, instanceConfig, tabC
             md = await controller.overrideGrpcMetadata(request.path)
             setRawMetadata(JSON.stringify(md.getMap(), null , "\t"))
         } else {
-            const jsonMetadata = JSON.parse(rawMetadata)
-            Object.keys(jsonMetadata).forEach((key) => {
-                md.set(key, jsonMetadata[key])
-            })
+            try {
+                const jsonMetadata = JSON.parse(rawMetadata)
+                Object.keys(jsonMetadata).forEach((key) => {
+                    md.set(key, jsonMetadata[key])
+                })
+            } catch (e) {
+                // JS PARSE ERROR
+            }
         }
 
         const body = JSON.parse(rawBody)

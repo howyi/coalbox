@@ -6,7 +6,7 @@
 ## Sample usage
 
 ## `sample.proto`
-```proto
+```protobuf
 syntax = "proto3";
 
 /**

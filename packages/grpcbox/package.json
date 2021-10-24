@@ -1,5 +1,5 @@
 {
-  "name": "coalbox",
+  "name": "grpcbox",
   "version": "0.0.7",
   "private": true,
   "description": "> TODO: description",
@@ -27,8 +27,8 @@
     "electron-build": "electron-builder",
     "electron-release": "npm run react-build && electron-builder --publish=always",
     "electron-start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
-    "dev:desktop": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build:desktop": "npm run react-build && npm run electron-build"
+    "dev:grpcbox": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build:grpcbox": "npm run react-build && npm run electron-build"
   },
   "dependencies": {
     "@coalbox/core": "file:../core",

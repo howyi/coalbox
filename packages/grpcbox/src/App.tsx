@@ -7,7 +7,7 @@ export const App: React.FC = () =>  {
   const [config, setConfig] = React.useState<CoalboxConfig>({
     workspaces: [{
       id: "0",
-      name: 'Coalbox',
+      name: 'gRPC box',
       collections: [],
       tabs: [],
       instances: []

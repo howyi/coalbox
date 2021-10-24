@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "dev:packages": "lerna run dev --parallel --stream",
-    "dev:desktop": "lerna run dev:desktop --parallel --stream",
+    "dev:grpcbox": "lerna run dev:grpcbox --parallel --stream",
     "build:packages": "lerna run build --parallel --stream",
-    "build:desktop": "lerna run build --parallel --stream && lerna run build:desktop --parallel --stream"
+    "build:grpcbox": "lerna run build --parallel --stream && lerna run build:grpcbox --parallel --stream"
   },
   "devDependencies": {
     "@types/codemirror": "^5.60.2",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@coalbox/core": "file:packages/core",
-    "@coalbox/desktop": "file:packages/desktop",
+    "@coalbox/grpcbox": "file:packages/grpcbox",
     "@coalbox/proto-mapper": "file:packages/proto-mapper"
   }
 }

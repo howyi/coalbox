@@ -1,6 +1,6 @@
 {
   "name": "@coalbox/core",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": false,
   "description": "coalbox core components",
   "author": "howyi <howyi.lq@gmail.com>",
@@ -23,7 +23,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@coalbox/proto-mapper": "^0.0.7",
+    "@coalbox/proto-mapper": "^0.0.8",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@grpc/grpc-js": "^1.3.7",

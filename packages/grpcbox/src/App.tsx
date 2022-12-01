@@ -9,20 +9,20 @@ export const App: React.FC = () =>  {
       id: "0",
       name: 'gRPC box',
       collections: [
-        // {
-        //   id: '0',
-        //   name: 'helloworld',
-        //   type: "gRPCProtoSet",
-        //   endpoint: {
-        //     url: "http://localhost:50010",
-        //     serverCertificate: false,
-        //   },
-        //   filePaths: [
-        //       '/Users/howyi/Documents/dev/howyi/coalbox/examples/proto/helloworld.proto'
-        //   ],
-        //   importPaths: [],
-        //   metadata: '',
-        // }
+        {
+          id: '0',
+          name: 'helloworld',
+          type: "gRPCProtoSet",
+          endpoint: {
+            url: "http://localhost:50010",
+            serverCertificate: false,
+          },
+          filePaths: [
+              '/Users/takuya.hayashi/Documents/dev/howyi/coalbox/examples/proto/helloworld.proto'
+          ],
+          importPaths: [],
+          metadata: '',
+        }
       ],
       tabs: [],
       instances: []

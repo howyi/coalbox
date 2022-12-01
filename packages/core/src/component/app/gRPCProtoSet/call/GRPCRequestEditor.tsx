@@ -1,5 +1,5 @@
 import React from 'react';
-import {Controlled as CodeMirror} from 'react-codemirror2'
+import {Controlled as CodeMirror} from '../../../../utils/codemirror'
 // import 'codemirror.css';
 import 'codemirror/theme/material.css';
 // import 'styles/foldgutter.css'

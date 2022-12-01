@@ -23,6 +23,8 @@
   "dependencies": {
     "@coalbox/core": "file:packages/core",
     "@coalbox/grpcbox": "file:packages/grpcbox",
-    "@coalbox/proto-mapper": "file:packages/proto-mapper"
+    "@coalbox/proto-mapper": "file:packages/proto-mapper",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
